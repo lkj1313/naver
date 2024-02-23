@@ -1,0 +1,65 @@
+.div {
+  position: sticky;
+}
+.inputDiv {
+  width: 706px;
+  height: 60px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 30px;
+  border: 1px solid #03c75a;
+  box-sizing: border-box;
+  padding: 0 80px;
+  display: flex;
+  position: relative;
+
+  align-items: center;
+}
+.form {
+  width: 100%;
+  height: 90%;
+}
+.input {
+  width: 100%;
+  height: 90%;
+  border-radius: 0;
+  border: 0;
+  position: sticky;
+  outline: none;
+  font-size: 18px;
+}
+.input::placeholder {
+  font-size: 20px;
+}
+
+.Logo {
+  position: absolute;
+  left: 20px;
+  top: 12px;
+  width: 40px;
+  height: 35px;
+  z-index: 1;
+}
+
+.searchButton {
+  position: absolute;
+  right: 10px;
+  top: 2px;
+  width: 60px;
+  height: 55px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background-color: transparent;
+
+  cursor: pointer;
+}
+
+.readingGlasses {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  z-index: 1;
+}
