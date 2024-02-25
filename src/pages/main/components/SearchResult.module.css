@@ -1,0 +1,15 @@
+.firstDiv {
+  margin-left: auto;
+  margin-right: auto;
+  width: 706px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+}
+
+.itemsDiv {
+  width: 706px;
+  height: 20px;
+  margin: 30px 0;
+  border-bottom: 0.1px solid rgba(0, 0, 0, 0.126);
+}

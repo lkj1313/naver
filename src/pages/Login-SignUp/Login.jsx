@@ -1,32 +1,38 @@
 import { Link, useNavigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
-const Login = () => {
+
+const Login = ({ setUserId, loginId, setLoginId }) => {
   const navigate = useNavigate();
-  const [LoginId, setLoginId] = useState("");
   const [LoginPassword, setLoginPassword] = useState();
   const emailRegEx =
     /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/i;
   const passwordRegEx = /^[A-Za-z0-9]{6,}$/;
 
   const emailCheck = (username) => {
-    return emailRegEx.test(username); //형식에 맞을 경우, true 리턴 이메일 형식체크 함수
+    return emailRegEx.test(username);
   };
 
   const passwordCheck = (password) => {
     return passwordRegEx.test(password);
   };
+
   const inputLoginId = (e) => {
     setLoginId(e.target.value);
   };
+
   const inputLoginPassword = (e) => {
     setLoginPassword(e.target.value);
   };
-  const Login = async () => {
-    if (emailCheck(LoginId) && passwordCheck(LoginPassword)) {
+
+  const Login = async (e) => {
+    e.preventDefault(); // 폼의 기본 동작 방지
+
+    if (emailCheck(loginId) && passwordCheck(LoginPassword)) {
+      setUserId(loginId);
       try {
         const auth = getAuth();
-        await signInWithEmailAndPassword(auth, LoginId, LoginPassword);
+        await signInWithEmailAndPassword(auth, loginId, LoginPassword);
         alert("로그인이 완료되었습니다.");
         navigate("/home");
       } catch (error) {
@@ -36,29 +42,26 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <form onSubmit={Login}>
       <input
         type="email"
-        value={LoginId}
+        value={loginId}
         onChange={inputLoginId}
         placeholder="아이디를 입력해주세요"
-      ></input>
-      <br></br>
+      />
+      <br />
       <input
         value={LoginPassword}
         type="password"
         onChange={inputLoginPassword}
         placeholder="비밀번호를 입력해주세요"
       />
-      <br></br>
-      <button onClick={Login} type="submit">
-        로그인
-      </button>
-
+      <br />
+      <button type="submit">로그인</button>
       <button>
         <Link to="/signup">회원가입 페이지로 이동</Link>
       </button>
-    </div>
+    </form>
   );
 };
 
