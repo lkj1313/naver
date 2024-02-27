@@ -1,14 +1,13 @@
 import express from "express";
 import axios from "axios";
-import dotenv from "dotenv";
-dotenv.config();
+import { config } from "dotenv"; // dotenv의 config 함수를 가져오기
+
+config(); // .env 파일 로드
 
 const app = express();
 
-const client_id = "12N7s5caCx4M60sHs_KJ";
-const client_secret = "sz4AopeLSX";
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");
+  res.setHeader("Access-Control-Allow-Origin", "*");
   // 다른 필요한 CORS 헤더도 설정할 수 있습니다.
   next();
 });
@@ -20,8 +19,8 @@ app.get("/search/blog", async (req, res) => {
 
     const response = await axios.get(api_url, {
       headers: {
-        "X-Naver-Client-Id": client_id,
-        "X-Naver-Client-Secret": client_secret,
+        "X-Naver-Client-Id": process.env.CLIENT_ID, // process.env 사용
+        "X-Naver-Client-Secret": process.env.CLIENT_SECRET, // process.env 사용
       },
     });
 
